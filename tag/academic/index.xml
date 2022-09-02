@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Academic | Linh T Phan</title>
+    <link>https://example.com/tag/academic/</link>
+      <atom:link href="https://example.com/tag/academic/index.xml" rel="self" type="application/rss+xml" />
+    <description>Academic</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 25 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://example.com/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Academic</title>
+      <link>https://example.com/tag/academic/</link>
+    </image>
+    
+    <item>
+      <title>Setting up Academic page in Linux with Wowchemy</title>
+      <link>https://example.com/post/1st_post/</link>
+      <pubDate>Sat, 25 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>https://example.com/post/1st_post/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Since everyone has website, I record how I build this website. This post is heavily influened by &lt;a href=&#34;https://pchunduri6.github.io/post/create-website/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;the post of Pramod&lt;/a&gt; but without the need of using &lt;code&gt;root&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;setup-golang-and-hugo&#34;&gt;Setup Golang and Hugo&lt;/h2&gt;
+&lt;p&gt;The pre-requisite for building this blog is Hugo framework but Hugo requires Golang so in this 1st step, we need to install Golang before anything else&lt;/p&gt;
+&lt;p&gt;To install Golang, please check &lt;a href=&#34;https://go.dev/doc/install&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;its homepage&lt;/a&gt; and download the lastest release of Golang.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Extract the compressed file.&lt;/li&gt;
+&lt;li&gt;Suppose the folder is located at &lt;code&gt;~/code/go1.17.5.linux-amd64&lt;/code&gt;, we need to add the following line to &lt;code&gt;.zshrc&lt;/code&gt; or &lt;code&gt;.bashrc&lt;/code&gt; so your terminal can find &lt;code&gt;go&lt;/code&gt; when it needs&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;    export PATH=$PATH:~/code/go1.17.5.linux-amd64/bin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;Rehash your &lt;code&gt;$PATH&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;    source .zshrc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;Check if your system can find &lt;code&gt;go&lt;/code&gt; by typing the following in your terminal&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;    go version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then, we need to install Hugo&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Clone source of Hugo to your local machine by&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/gohugoio/hugo.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Go to your clone folder and install Hugo&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;cd hugo
+CGO_ENABLED=1 go install -v --tags extended
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;The installation creates a folder under your home named &lt;code&gt;go&lt;/code&gt;. Copy the &lt;code&gt;hugo&lt;/code&gt; binary file to the location of your &lt;code&gt;go&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;cd ~/go/bin
+cp hugo ~/code/go1.17.5.linux-amd64/bin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Test &lt;code&gt;hugo&lt;/code&gt; by&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    hugo version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;academic-template&#34;&gt;Academic template&lt;/h2&gt;
+&lt;p&gt;Clone the source of Academic template&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/wowchemy/starter-academic.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To run the default version of template, try this&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd ~/path-to-starter-academic/
+hugo server
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The following error will occur&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Error: Error building site: failed to render pages: render of &amp;quot;term&amp;quot; failed: execute of template failed: template: _default/list.html:5:3: executing &amp;quot;_default/list.html&amp;quot; at &amp;lt;partial &amp;quot;site_head&amp;quot; .&amp;gt;: error calling partial: &amp;quot;/tmp/hugo_cache/modules/filecache/modules/pkg/mod/github.com/wowchemy/wowchemy-hugo-modules/wowchemy/v5@v5.0.0-20211122231030-d26f01d5d6c3/layouts/partials/site_head.html:208:13&amp;quot;: execute of template failed: template: partials/site_head.html:208:13: executing &amp;quot;partials/site_head.html&amp;quot; at &amp;lt;getenv &amp;quot;WC_POST_CSS&amp;quot;&amp;gt;: error calling getenv: access denied: &amp;quot;WC_POST_CSS&amp;quot; is not whitelisted in policy &amp;quot;security.funcs.getenv&amp;quot;; the current security configuration is:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dont worry. Copy the error to search engine and it will point you to &lt;a href=&#34;https://stackoverflow.com/questions/70429317/blogdownserve-site-fails-to-produce-template-site&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;the solution on Stackoverflow&lt;/a&gt;. Basicly, just copy the following code to your &lt;code&gt;path-to-starter-academic/config/_default/config.yaml&lt;/code&gt;. For me, I paste after &lt;code&gt;module import&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;security:
+  funcs:
+    getenv:
+      - ^HUGO_
+      - ^WC_
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now check &lt;code&gt;hugo server&lt;/code&gt; again. Everything works now :)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ cd path-to-starter-acamedic
+$ hugo server
+Start building sites …
+hugo v0.92.0-DEV+extended linux/amd64 BuildDate=unknown
+
+                   | EN
+-------------------+-----
+  Pages            | 49
+  Paginator pages  |  0
+  Non-page files   |  7
+  Static files     | 16
+  Processed images | 19
+  Aliases          |  9
+  Sitemaps         |  1
+  Cleaned          |  0
+
+Built in 199 ms
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
